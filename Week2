@@ -22,4 +22,4 @@ printf("Deficit: %.2f\n", -balance);
   }
 printf("The budget is balanced.\n");
  return 0;
-)
+}
