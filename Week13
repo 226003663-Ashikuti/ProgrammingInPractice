@@ -1,1 +1,28 @@
-
+#include <stdio.h> 
+#include <stdlib.h> 
+typedef struct { 
+ int id; 
+ double salary; 
+} Employee; 
+int main(void) 
+{ 
+ int capacity = 2; /* slots available */ 
+ int count = 0; /* slots used */ 
+ int i; 
+ Employee *staff = malloc(capacity * sizeof(Employee)); 
+ for (i = 0; i < 5; i++) { /* add 5 employees */ 
+ if (count == capacity) { /* full? make it bigger */ 
+ capacity = capacity * 2; 
+ staff = realloc(staff, capacity * sizeof(Employee)); 
+ printf("Array grown to %d slots\n", capacity); 
+ } 
+ staff[count].id = 1001 + i; 
+ staff[count].salary = 15000.0 + i * 1000; 
+ count++; 
+ } 
+ for (i = 0; i < count; i++) { 
+ printf("%d N$%.2f\n", staff[i].id, staff[i].salary); 
+ } 
+ free(staff); 
+ return 0; 
+}
